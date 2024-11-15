@@ -31,17 +31,46 @@ namespace Labo_9___MenuSliderBrushes
             }
         }
 
+        private bool IsTest()
+        {
+            string getal = "vijf";
+
+            try
+            {
+                int number = int.Parse(getal);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new FormatException($"{getal} kan niet geconverteerd worden naar integer");
+            }
+        }
+
         private void numberMenu_Click(object sender, RoutedEventArgs e)
         {
             MenuItem menuItem = sender as MenuItem;
-            
-            if (menuItem == firstMenuItem)
+
+            try
             {
-                numberOneTextBox.Text = "2";
+                if (IsTest())
+                {
+                    if (menuItem == firstMenuItem)
+                    {
+                        numberOneTextBox.Text = "2";
+                    }
+                    else if (menuItem == secondMenuItem)
+                    {
+                        numberTwoTextBox.Text = "2";
+                    }
+                }
             }
-            else if (menuItem == secondMenuItem)
+            catch (NullReferenceException ex)
             {
-                numberTwoTextBox.Text = "2";
+                MessageBox.Show("MenuItem is niet gekend");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -93,6 +122,5 @@ namespace Labo_9___MenuSliderBrushes
                 }
             }
         }
-
     }
 }
